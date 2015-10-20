@@ -3,12 +3,19 @@ var width = 1024;//600;
 var game = new Phaser.Game(width, height, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
 function preload() {
+    setupCanvas();
+    loadImages();
+}
+
+function setupCanvas() {
     var canvas = $('canvas');
     var gameDiv = $('.game').addClass('contentCentered');
     var emptyDiv = $('<div>', {});
     emptyDiv.append(canvas);
     gameDiv.append(emptyDiv);
+}
 
+function loadImages() {
     game.load.image('attackBtn', 'assets/attack_button.png');
     game.load.image('defendBtn', 'assets/defend_button.png');
     game.load.image('specialBtn', 'assets/special_button.png');
@@ -39,7 +46,6 @@ function create() {
 
     var spacingButtons = 100, buttonWidth = 72, buttonY = 480;
     var spacingContainer = (width - spacingButtons * 2 - buttonWidth * 3) / 2;
-    console.log(width + ' ' + spacingContainer);
     var attackBtn = game.add.sprite(spacingContainer, buttonY, 'attackBtn');
     var defendBtn = game.add.sprite(spacingContainer + buttonWidth + spacingButtons, buttonY, 'defendBtn');
     var specialBtn = game.add.sprite(width - spacingContainer - buttonWidth, buttonY, 'specialBtn');
