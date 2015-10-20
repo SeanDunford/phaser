@@ -3,6 +3,12 @@ var width = 1024;//600;
 var game = new Phaser.Game(width, height, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
 function preload() {
+    var canvas = $('canvas');
+    var gameDiv = $('.game').addClass('contentCentered');
+    var emptyDiv = $('<div>', {});
+    emptyDiv.append(canvas);
+    gameDiv.append(emptyDiv);
+
     game.load.image('attackBtn', 'assets/attack_button.png');
     game.load.image('defendBtn', 'assets/defend_button.png');
     game.load.image('specialBtn', 'assets/special_button.png');

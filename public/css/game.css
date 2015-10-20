@@ -1,0 +1,40 @@
+body {
+    margin: 0;
+    background-color: #0e2c3a;
+}
+
+canvas {
+    margin: auto;
+}
+
+.contentCentered {
+    text-align: center;
+    white-space: nowrap;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.contentCentered > * {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    white-space: normal;
+    -moz-user-select: text;
+    -khtml-user-select: text;
+    -webkit-user-select: text;
+    -ms-user-select: text;
+}
+
+.contentCentered:before {
+    content: '';
+    height: 100%;
+    margin: 0 -0.1em;
+    display: inline-block;
+    vertical-align: middle;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
