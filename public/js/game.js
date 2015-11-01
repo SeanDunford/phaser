@@ -1,11 +1,8 @@
 var height = 576;//800;
 var width = 1024;//600;
 var game = new Phaser.Game(width, height, Phaser.AUTO, '', { preload: preload, create: create, update: update });
-var drake = null;
-var meek = null;
-var attackBtn = null;
-var defendBtn = null;
-var specialBtn = null;
+var drake = null, meek = null;
+var attackBtn = null, defendBtn = null, specialBtn = null;
 var spacingButtons = 100, buttonWidth = 72, buttonY = 480;
 var gameOver = false;
 
@@ -36,7 +33,7 @@ function loadImages() {
 
 function attackClk() {
     console.log('Attack Pressed');
-    addPunchDrake();
+    drake.punch();
 }
 function defendClk() {
     console.log('Defend Pressed');
@@ -65,36 +62,11 @@ function setupBackground(){
 }
 
 function setupDrake() {
-    addIdleDrake();
     drake = new Drake(game);
 }
 
-function addIdleDrake() {
-    drake = game.add.sprite(300, 200, 'drakeIdle');
-    drake.animations.add('walk');
-    drake.animations.play('walk', 8, true);
-}
-
-function addPunchDrake() {
-    drake.loadTexture('drakePunch', 0);
-    drake.animations.add('punch');
-    drake.animations.play('punch', 8, false, false);
-    drake.events.onAnimationComplete.add(function(){
-        drake.loadTexture('drakeIdle', 0);
-        drake.animations.add('walk');
-        drake.animations.play('walk', 8, true);
-    }, this);
-}
-
 function setupMeek(){
-    addIdleMeek();
     meek = new Meek(game);
-}
-
-function addIdleMeek() {
-    meek = game.add.sprite(600, 200, 'meekIdle');
-    meek.animations.add('walk');
-    meek.animations.play('walk', 7, true);
 }
 
 function setupButtons(){
