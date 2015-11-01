@@ -65,12 +65,8 @@ function setupBackground(){
 }
 
 function setupDrake() {
-    console.log('Setting up drake');
     addIdleDrake();
-
-    drake.maxHealth = 250;
-    drake.currentHealth = drake.maxHealth;
-    drake.lastHealth = 0;
+    drake = new Drake(game);
 }
 
 function addIdleDrake() {
@@ -91,12 +87,14 @@ function addPunchDrake() {
 }
 
 function setupMeek(){
+    addIdleMeek();
+    meek = new Meek(game);
+}
+
+function addIdleMeek() {
     meek = game.add.sprite(600, 200, 'meekIdle');
     meek.animations.add('walk');
     meek.animations.play('walk', 7, true);
-    meek.maxHealth = 225;
-    meek.currentHealth = meek.maxHealth;
-    meek.lastHealth = 0;
 }
 
 function setupButtons(){
@@ -134,27 +132,27 @@ var interval = setInterval(function() {
 }, 400);
 
 function update() {
-    //if(gameOver){
-    //    return;
-    //}
-    //if(drake.lastHealth !== drake.currentHealth) {
-    //    drake.lastHealth = drake.currentHealth;
-    //    drake.poop = 'foo';
-    //    drake.healthBar.setPercent(100 * (drake.currentHealth / drake.maxHealth));
-    //    console.log('Updating drakes health bar last: ', drake.lastHealth, 'current:', drake.currentHealth);
-    //}
-    //if(meek.lastHealth !== meek.currentHealth) {
-    //    meek.lastHealth = meek.currentHealth;
-    //    meek.poop = 'foo';
-    //    meek.healthBar.setPercent(100 * (meek.currentHealth / meek.maxHealth));
-    //    console.log('Updating drakes health bar last: ', meek.lastHealth, 'current:', meek.currentHealth);
-    //}
-    //if(drake.currentHealth < 0 || meek.currentHealth < 0){
-    //    gameOver = true;
-    //    clearInterval(interval);
-    //    var winStr = (drake.currentHealth > meek.currentHealth) ? 'drake' : 'meek';
-    //    winStr += ' is the winner!!!!1!!!1!!!'
-    //    console.log('GAME OVER');
-    //    console.log(winStr);
-    //}
+    if(gameOver){
+        return;
+    }
+    if(drake.lastHealth !== drake.currentHealth) {
+        drake.lastHealth = drake.currentHealth;
+        drake.poop = 'foo';
+        drake.healthBar.setPercent(100 * (drake.currentHealth / drake.maxHealth));
+        console.log('Updating drakes health bar last: ', drake.lastHealth, 'current:', drake.currentHealth);
+    }
+    if(meek.lastHealth !== meek.currentHealth) {
+        meek.lastHealth = meek.currentHealth;
+        meek.poop = 'foo';
+        meek.healthBar.setPercent(100 * (meek.currentHealth / meek.maxHealth));
+        console.log('Updating drakes health bar last: ', meek.lastHealth, 'current:', meek.currentHealth);
+    }
+    if(drake.currentHealth < 0 || meek.currentHealth < 0){
+        gameOver = true;
+        clearInterval(interval);
+        var winStr = (drake.currentHealth > meek.currentHealth) ? 'drake' : 'meek';
+        winStr += ' is the winner!!!!1!!!1!!!'
+        console.log('GAME OVER');
+        console.log(winStr);
+    }
 }
