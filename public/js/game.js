@@ -29,12 +29,14 @@ function loadImages() {
     game.load.image('background', 'assets/querico_bg.png');
 
     //(key, url, frameWidth, frameHeight, frameMax, margin, spacing)
-    game.load.spritesheet('drakeIdle', 'assets/drake_idle_sheet.png', 160, 256, 4);
-    game.load.spritesheet('meekIdle', 'assets/meek_idle_sheet.png', 160, 256, 4);
+    game.load.spritesheet('drakeIdle', 'assets/drake_idle_sheet.png', 192, 256, 4);
+    game.load.spritesheet('meekIdle', 'assets/meek_idle_sheet.png', 192, 256, 4);
+    game.load.spritesheet('drakePunch', 'assets/drake_punch_sheet.png', 192, 256, 12);
 }
 
 function attackClk() {
     console.log('Attack Pressed');
+    addPunchDrake();
 }
 function defendClk() {
     console.log('Defend Pressed');
@@ -64,18 +66,34 @@ function setupBackground(){
 
 function setupDrake() {
     console.log('Setting up drake');
-    drake = game.add.sprite(300, 200, 'drakeIdle');
-    drake.animations.add('walk');
-    drake.animations.play('walk', 7, true);
+    addIdleDrake();
+
     drake.maxHealth = 250;
     drake.currentHealth = drake.maxHealth;
     drake.lastHealth = 0;
 }
 
+function addIdleDrake() {
+    drake = game.add.sprite(300, 200, 'drakeIdle');
+    drake.animations.add('walk');
+    drake.animations.play('walk', 8, true);
+}
+
+function addPunchDrake() {
+    drake.loadTexture('drakePunch', 0);
+    drake.animations.add('punch');
+    drake.animations.play('punch', 8, false, false);
+    drake.events.onAnimationComplete.add(function(){
+        drake.loadTexture('drakeIdle', 0);
+        drake.animations.add('walk');
+        drake.animations.play('walk', 8, true);
+    }, this);
+}
+
 function setupMeek(){
     meek = game.add.sprite(600, 200, 'meekIdle');
     meek.animations.add('walk');
-    meek.animations.play('walk', 5, true);
+    meek.animations.play('walk', 7, true);
     meek.maxHealth = 225;
     meek.currentHealth = meek.maxHealth;
     meek.lastHealth = 0;
@@ -116,27 +134,27 @@ var interval = setInterval(function() {
 }, 400);
 
 function update() {
-    if(gameOver){
-        return;
-    }
-    if(drake.lastHealth !== drake.currentHealth) {
-        drake.lastHealth = drake.currentHealth;
-        drake.poop = 'foo';
-        drake.healthBar.setPercent(100 * (drake.currentHealth / drake.maxHealth));
-        console.log('Updating drakes health bar last: ', drake.lastHealth, 'current:', drake.currentHealth);
-    }
-    if(meek.lastHealth !== meek.currentHealth) {
-        meek.lastHealth = meek.currentHealth;
-        meek.poop = 'foo';
-        meek.healthBar.setPercent(100 * (meek.currentHealth / meek.maxHealth));
-        console.log('Updating drakes health bar last: ', meek.lastHealth, 'current:', meek.currentHealth);
-    }
-    if(drake.currentHealth < 0 || meek.currentHealth < 0){
-        gameOver = true;
-        clearInterval(interval);
-        var winStr = (drake.currentHealth > meek.currentHealth) ? 'drake' : 'meek';
-        winStr += ' is the winner!!!!1!!!1!!!'
-        console.log('GAME OVER');
-        console.log(winStr);
-    }
+    //if(gameOver){
+    //    return;
+    //}
+    //if(drake.lastHealth !== drake.currentHealth) {
+    //    drake.lastHealth = drake.currentHealth;
+    //    drake.poop = 'foo';
+    //    drake.healthBar.setPercent(100 * (drake.currentHealth / drake.maxHealth));
+    //    console.log('Updating drakes health bar last: ', drake.lastHealth, 'current:', drake.currentHealth);
+    //}
+    //if(meek.lastHealth !== meek.currentHealth) {
+    //    meek.lastHealth = meek.currentHealth;
+    //    meek.poop = 'foo';
+    //    meek.healthBar.setPercent(100 * (meek.currentHealth / meek.maxHealth));
+    //    console.log('Updating drakes health bar last: ', meek.lastHealth, 'current:', meek.currentHealth);
+    //}
+    //if(drake.currentHealth < 0 || meek.currentHealth < 0){
+    //    gameOver = true;
+    //    clearInterval(interval);
+    //    var winStr = (drake.currentHealth > meek.currentHealth) ? 'drake' : 'meek';
+    //    winStr += ' is the winner!!!!1!!!1!!!'
+    //    console.log('GAME OVER');
+    //    console.log(winStr);
+    //}
 }
