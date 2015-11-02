@@ -44,8 +44,8 @@ function specialClk() {
 
 function create() {
     setupBackground();
-    setupDrake();
     setupMeek();
+    setupDrake();
     setupButtons();
     setupHealthBars();
 }
@@ -63,6 +63,8 @@ function setupBackground(){
 
 function setupDrake() {
     drake = new Drake(game);
+    drake.setMeek(meek);
+    meek.setDrake(drake);
 }
 
 function setupMeek(){
