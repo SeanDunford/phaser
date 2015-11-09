@@ -29,6 +29,7 @@ function loadImages() {
     game.load.spritesheet('drakeIdle', 'assets/drake_idle_sheet.png', 192, 256, 4);
     game.load.spritesheet('meekIdle', 'assets/meek_idle_sheet.png', 192, 256, 4);
     game.load.spritesheet('drakePunch', 'assets/drake_punch_sheet.png', 192, 256, 12);
+    game.load.spritesheet('meekPunch', 'assets/meek_punch_sheet.png', 192, 256, 12);
 }
 
 function attackClk() {
@@ -37,6 +38,7 @@ function attackClk() {
 }
 function defendClk() {
     console.log('Defend Pressed');
+    meek.punch();
 }
 function specialClk() {
     console.log('Special Pressed');

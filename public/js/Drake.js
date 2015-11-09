@@ -13,6 +13,7 @@ var Drake = function(game) {
 Drake.prototype.constructor = Drake;
 
 Drake.prototype.punch = function () {
+    this.drake.bringToTop();
     this.drake.loadTexture('drakePunch', 0);
     this.drake.animations.add('punch');
     this.drake.animations.play('punch', 8, false, false);
@@ -36,6 +37,18 @@ Drake.prototype.punch = function () {
             this.drake.animations.play('walk', 8, true);
         }
     }.bind(this), this);
+};
+
+Drake.prototype.punched = function () {
+    setTimeout(function() {
+        //Last punch impact
+        this.game.add.tween(this.drake).to({ x: 100 }, 150, Phaser.Easing.Linear.None, true);
+    }.bind(this), 950);
+
+    setTimeout(function() {
+        //Reset
+        this.game.add.tween(this.drake).to({ x: 300 }, 200, Phaser.Easing.Linear.None, true);
+    }.bind(this), 1480);
 };
 
 Drake.prototype.setMeek = function (meek) {
