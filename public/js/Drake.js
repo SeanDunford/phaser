@@ -31,24 +31,34 @@ Drake.prototype.punch = function () {
     this.drake.events.onAnimationComplete.add(function(){
         if (this.drake.animations.currentAnim.name === 'punch') {
             //Reset
-            this.game.add.tween(this.drake).to({ x: this.origX }, 100, Phaser.Easing.Linear.None, true);
-            this.drake.loadTexture('drakeIdle', 0);
-            this.drake.animations.add('walk');
-            this.drake.animations.play('walk', 8, true);
+            this.setDrakeToIdle();
         }
     }.bind(this), this);
 };
 
+Drake.prototype.setDrakeToIdle = function () {
+    this.game.add.tween(this.drake).to({ x: this.origX }, 100, Phaser.Easing.Linear.None, true);
+    this.drake.loadTexture('drakeIdle', 0);
+    this.drake.animations.add('walk');
+    this.drake.animations.play('walk', 8, true);
+};
+
 Drake.prototype.punched = function () {
+    this.drake.loadTexture('drakePunched', 0);
+    this.drake.animations.add('punched');
+    this.drake.animations.play('punched', 8, false, false);
+
+    this.drake.events.onAnimationComplete.add(function(){
+        if (this.drake.animations.currentAnim.name === 'punched') {
+            //Reset
+            this.setDrakeToIdle();
+        }
+    }.bind(this), this);
+
     setTimeout(function() {
         //Last punch impact
         this.game.add.tween(this.drake).to({ x: 100 }, 150, Phaser.Easing.Linear.None, true);
     }.bind(this), 950);
-
-    setTimeout(function() {
-        //Reset
-        this.game.add.tween(this.drake).to({ x: 300 }, 200, Phaser.Easing.Linear.None, true);
-    }.bind(this), 1480);
 };
 
 Drake.prototype.setMeek = function (meek) {

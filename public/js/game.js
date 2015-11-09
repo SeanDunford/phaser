@@ -30,6 +30,8 @@ function loadImages() {
     game.load.spritesheet('meekIdle', 'assets/meek_idle_sheet.png', 192, 256, 4);
     game.load.spritesheet('drakePunch', 'assets/drake_punch_sheet.png', 192, 256, 12);
     game.load.spritesheet('meekPunch', 'assets/meek_punch_sheet.png', 192, 256, 12);
+
+    game.load.spritesheet('drakePunched', 'assets/drake_punched_sheet.png', 192, 256, 12);
 }
 
 function attackClk() {
@@ -101,11 +103,11 @@ function setupHealthBars(){
     meek.healthBar.setPercent(0);
 }
 
-var interval = setInterval(function() {
-    console.log('Depleting Health');
-    drake.currentHealth -= (.10 * Math.random()) * drake.maxHealth;
-    meek.currentHealth  -= (.10 * Math.random()) * meek.maxHealth;
-}, 400);
+//var interval = setInterval(function() {
+//    console.log('Depleting Health');
+//    drake.currentHealth -= (.10 * Math.random()) * drake.maxHealth;
+//    meek.currentHealth  -= (.10 * Math.random()) * meek.maxHealth;
+//}, 400);
 
 function update() {
     if(gameOver){
