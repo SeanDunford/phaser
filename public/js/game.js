@@ -16,6 +16,9 @@ function create() {
     this.setup.beginCreate();
     drake.play();
     meek.play();
+
+    var music = game.add.audio('theme_song');
+    music.loopFull(1);
 }
 
 //var interval = setInterval(function() {

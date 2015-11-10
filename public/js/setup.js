@@ -19,19 +19,21 @@ $.extend(Setup.prototype, {
         gameDiv.append(emptyDiv);
     },
     loadImages: function() {
-        this.game.load.image('attackBtn', 'assets/attack_button.png');
-        this.game.load.image('defendBtn', 'assets/defend_button.png');
-        this.game.load.image('specialBtn', 'assets/special_button.png');
-        this.game.load.image('background', 'assets/querico_bg.png');
+        this.game.load.image('attackBtn', 'assets/imgs/attack_button.png');
+        this.game.load.image('defendBtn', 'assets/imgs/defend_button.png');
+        this.game.load.image('specialBtn', 'assets/imgs/special_button.png');
+        this.game.load.image('background', 'assets/imgs/querico_bg.png');
 
         //(key, url, frameWidth, frameHeight, frameMax, margin, spacing)
-        this.game.load.spritesheet('drakeIdle', 'assets/drake_idle_sheet.png', 192, 256, 4);
-        this.game.load.spritesheet('meekIdle', 'assets/meek_idle_sheet.png', 192, 256, 4);
-        this.game.load.spritesheet('drakePunch', 'assets/drake_punch_sheet.png', 192, 256, 12);
-        this.game.load.spritesheet('meekPunch', 'assets/meek_punch_sheet.png', 192, 256, 12);
+        this.game.load.spritesheet('drakeIdle', 'assets/imgs/drake_idle_sheet.png', 192, 256, 4);
+        this.game.load.spritesheet('meekIdle', 'assets/imgs/meek_idle_sheet.png', 192, 256, 4);
+        this.game.load.spritesheet('drakePunch', 'assets/imgs/drake_punch_sheet.png', 192, 256, 12);
+        this.game.load.spritesheet('meekPunch', 'assets/imgs/meek_punch_sheet.png', 192, 256, 12);
 
-        this.game.load.spritesheet('drakePunched', 'assets/drake_punched_sheet.png', 192, 256, 12);
-        this.game.load.spritesheet('meekPunched', 'assets/meek_punched_sheet.png', 192, 256, 12);
+        this.game.load.spritesheet('drakePunched', 'assets/imgs/drake_punched_sheet.png', 192, 256, 12);
+        this.game.load.spritesheet('meekPunched', 'assets/imgs/meek_punched_sheet.png', 192, 256, 12);
+
+        this.game.load.audio('theme_song', ['assets/sounds/querico.ogg']);
     },
     setPlayers: function(drake, meek) {
         this.drake = drake;
