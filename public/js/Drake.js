@@ -1,3 +1,5 @@
+var easing = Phaser.Easing.Exponential.Out;
+
 var Drake = function(game) {
     this.game = game;
 
@@ -18,9 +20,9 @@ $.extend(Drake.prototype, {
             console.log('animation started.');
             if (this.drake.animations.currentAnim.name === 'punch') {
                 this.meek.punched();
-                this.game.add.tween(this.drake).to({ x: 510 }, 100, Phaser.Easing.Exponential.None, true);
+                this.game.add.tween(this.drake).to({ x: 510 }, 100, easing, true);
                 setTimeout(function (){ //Last Punch
-                    this.game.add.tween(this.drake).to({ x: 580 }, 40, Phaser.Easing.Exponential.None, true);
+                    this.game.add.tween(this.drake).to({ x: 580 }, 40, easing, true);
                 }.bind(this), 900);
             }
         }.bind(this), this);
@@ -42,7 +44,7 @@ $.extend(Drake.prototype, {
 
     },
     setDrakeToIdle: function () {
-        this.game.add.tween(this.drake).to({ x: this.origX }, 100, Phaser.Easing.Exponential.None, true);
+        this.game.add.tween(this.drake).to({ x: this.origX }, 100, easing, true);
         this.drake.loadTexture('drakeIdle', 0);
         this.drake.animations.add('walk');
         this.drake.animations.play('walk', 8, true);
@@ -54,7 +56,7 @@ $.extend(Drake.prototype, {
 
         setTimeout(function() {
             //Last punch impact
-            this.game.add.tween(this.drake).to({ x: 100 }, 150, Phaser.Easing.Exponential.None, true);
+            this.game.add.tween(this.drake).to({ x: 100 }, 150, easing, true);
         }.bind(this), 950);
     },
     setMeek: function (meek) {
