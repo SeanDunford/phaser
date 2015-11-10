@@ -2,6 +2,9 @@ var spacingButtons = 100, buttonWidth = 72, buttonY = 480;
 
 var Setup = function(game) {
     this.game = game;
+    this.attackCooldown = false;
+    this.defendCooldown = false;
+    this.specialCooldown = false;
     this.beginSetup();
 };
 Setup.prototype.constructor = Setup;
@@ -33,6 +36,10 @@ $.extend(Setup.prototype, {
         this.game.load.spritesheet('drakePunched', 'assets/imgs/drake_punched_sheet.png', 192, 256, 12);
         this.game.load.spritesheet('meekPunched', 'assets/imgs/meek_punched_sheet.png', 192, 256, 12);
 
+        this.game.load.spritesheet('attackCooldown', 'assets/imgs/attack_cooldown_sheet.png', 76, 76, 18);
+        this.game.load.spritesheet('defendCooldown', 'assets/imgs/defend_cooldown_sheet.png', 76, 76, 18);
+        this.game.load.spritesheet('specialCooldown', 'assets/imgs/special_cooldown_sheet.png', 76, 76, 18);
+
         this.game.load.audio('theme_song', ['assets/sounds/querico.ogg']);
     },
     setPlayers: function(drake, meek) {
@@ -62,15 +69,67 @@ $.extend(Setup.prototype, {
         this.specialBtn = this.game.add.button(width - spacingContainer - buttonWidth, buttonY, 'specialBtn', this.specialClk, this, 2, 1, 0);
     },
     attackClk: function() {
-        console.log('Attack Pressed');
-        this.drake.punch();
+        if (!this.attackCooldown) {
+            this.attackCooldown = true;
+
+            console.log('Attack Pressed');
+            this.drake.punch();
+
+            this.attackBtn = game.add.sprite(this.attackBtn.x, this.attackBtn.y, 'attackCooldown');
+            this.attackBtn.animations.add('attackCooldown');
+            this.attackBtn.animations.play('attackCooldown', 6, false);
+
+            this.attackBtn.events.onAnimationComplete.add(function(){
+                var name = this.attackBtn.animations.currentAnim.name;
+                if (name === 'attackCooldown') {
+                    //Reset
+                    this.attackBtn.loadTexture('attackBtn', 0);
+                    this.attackCooldown = false;
+                }
+            }.bind(this), this);
+        }
+        else {
+            console.log('NOT YET - ATTACK');
+        }
     },
     defendClk: function() {
-        console.log('Defend Pressed');
-        this.meek.punch();
+        if (!this.defendCooldown) {
+            this.defendCooldown = true;
+
+            console.log('Defend Pressed');
+            this.meek.punch();
+
+            this.defendBtn = game.add.sprite(this.defendBtn.x, this.defendBtn.y, 'defendCooldown');
+            this.defendBtn.animations.add('defendCooldown');
+            this.defendBtn.animations.play('defendCooldown', 8, false);
+
+            this.defendBtn.events.onAnimationComplete.add(function(){
+                var name = this.defendBtn.animations.currentAnim.name;
+                if (name === 'defendCooldown') {
+                    //Reset
+                    this.defendBtn.loadTexture('defendBtn', 0);
+                    this.defendCooldown = false;
+                }
+            }.bind(this), this);
+        }
     },
     specialClk: function() {
-        console.log('Special Pressed');
+        if (!this.specialCooldown) {
+            this.specialCooldown = true;
+
+            this.specialBtn = game.add.sprite(this.specialBtn.x, this.specialBtn.y, 'specialCooldown');
+            this.specialBtn.animations.add('specialCooldown');
+            this.specialBtn.animations.play('specialCooldown', 4, false);
+
+            this.specialBtn.events.onAnimationComplete.add(function(){
+                var name = this.specialBtn.animations.currentAnim.name;
+                if (name === 'specialCooldown') {
+                    //Reset
+                    this.specialBtn.loadTexture('specialBtn', 0);
+                    this.specialCooldown = false;
+                }
+            }.bind(this), this);
+        }
     },
     setupHealthBars: function(){
         var barConfig = {
