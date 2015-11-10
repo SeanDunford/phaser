@@ -32,6 +32,7 @@ function loadImages() {
     game.load.spritesheet('meekPunch', 'assets/meek_punch_sheet.png', 192, 256, 12);
 
     game.load.spritesheet('drakePunched', 'assets/drake_punched_sheet.png', 192, 256, 12);
+    game.load.spritesheet('meekPunched', 'assets/meek_punched_sheet.png', 192, 256, 12);
 }
 
 function attackClk() {

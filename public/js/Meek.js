@@ -17,17 +17,29 @@ Meek.prototype.setDrake = function (drake) {
 };
 
 Meek.prototype.punched = function () {
+    this.meek.loadTexture('meekPunched', 0);
+    this.meek.animations.add('punched');
+    this.meek.animations.play('punched', 8, false, false);
+
+    this.meek.events.onAnimationComplete.add(function(){
+        if (this.meek.animations.currentAnim.name === 'punched') {
+            //Reset
+            this.setMeekToIdle();
+        }
+    }.bind(this), this);
+
     setTimeout(function() {
         //Last punch impact
         this.game.add.tween(this.meek).to({ x: 800 }, 150, Phaser.Easing.Linear.None, true);
     }.bind(this), 950);
-
-    setTimeout(function() {
-        //Reset
-        this.game.add.tween(this.meek).to({ x: 600 }, 200, Phaser.Easing.Linear.None, true);
-    }.bind(this), 1480);
 };
 
+Meek.prototype.setMeekToIdle = function () {
+    this.game.add.tween(this.meek).to({ x: this.origX }, 100, Phaser.Easing.Linear.None, true);
+    this.meek.loadTexture('meekIdle', 0);
+    this.meek.animations.add('walk');
+    this.meek.animations.play('walk', 8, true);
+};
 
 Meek.prototype.punch = function () {
     this.meek.bringToTop();
@@ -48,10 +60,7 @@ Meek.prototype.punch = function () {
     this.meek.events.onAnimationComplete.add(function(){
         if (this.meek.animations.currentAnim.name === 'punch') {
             //Reset
-            this.game.add.tween(this.meek).to({ x: this.origX }, 100, Phaser.Easing.Linear.None, true);
-            this.meek.loadTexture('meekIdle', 0);
-            this.meek.animations.add('walk');
-            this.meek.animations.play('walk', 8, true);
+            this.setMeekToIdle();
         }
     }.bind(this), this);
 };
