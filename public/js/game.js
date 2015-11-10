@@ -14,7 +14,8 @@ function create() {
 
     this.setup.setPlayers(drake, meek);
     this.setup.beginCreate();
-    drake.play();           meek.play();
+    drake.play();
+    meek.play();
 }
 
 //var interval = setInterval(function() {

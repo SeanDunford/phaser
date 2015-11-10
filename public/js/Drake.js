@@ -13,14 +13,9 @@ $.extend(Drake.prototype, {
         this.drake.animations.add('walk');
         this.drake.animations.play('walk', 8, true);
         this.origX = this.drake.x;
-    },
-    punch: function () {
-        this.drake.bringToTop();
-        this.drake.loadTexture('drakePunch', 0);
-        this.drake.animations.add('punch');
-        this.drake.animations.play('punch', 8, false, false);
 
         this.drake.events.onAnimationStart.add(function(){
+            console.log('animation started.');
             if (this.drake.animations.currentAnim.name === 'punch') {
                 this.meek.punched();
                 this.game.add.tween(this.drake).to({ x: 510 }, 100, Phaser.Easing.Exponential.None, true);
@@ -31,11 +26,20 @@ $.extend(Drake.prototype, {
         }.bind(this), this);
 
         this.drake.events.onAnimationComplete.add(function(){
-            if (this.drake.animations.currentAnim.name === 'punch') {
+            var name = this.drake.animations.currentAnim.name;
+            if (name === 'punch' || name === 'punched') {
                 //Reset
                 this.setDrakeToIdle();
             }
         }.bind(this), this);
+    },
+    punch: function () {
+        this.drake.bringToTop();
+        this.drake.loadTexture('drakePunch', 0);
+        this.drake.animations.add('punch');
+        this.drake.animations.play('punch', 8, false, false);
+
+
     },
     setDrakeToIdle: function () {
         this.game.add.tween(this.drake).to({ x: this.origX }, 100, Phaser.Easing.Exponential.None, true);
@@ -47,13 +51,6 @@ $.extend(Drake.prototype, {
         this.drake.loadTexture('drakePunched', 0);
         this.drake.animations.add('punched');
         this.drake.animations.play('punched', 8, false, false);
-
-        this.drake.events.onAnimationComplete.add(function(){
-            if (this.drake.animations.currentAnim.name === 'punched') {
-                //Reset
-                this.setDrakeToIdle();
-            }
-        }.bind(this), this);
 
         setTimeout(function() {
             //Last punch impact
