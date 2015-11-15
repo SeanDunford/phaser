@@ -20,9 +20,9 @@ $.extend(Drake.prototype, {
             console.log('animation started.');
             if (this.drake.animations.currentAnim.name === 'punch') {
                 this.meek.punched();
-                this.game.add.tween(this.drake).to({ x: 510 }, 100, easing, true);
+                this.game.add.tween(this.drake).to({ x:  this.drake.x + 210 }, 100, easing, true);
                 setTimeout(function (){ //Last Punch
-                    this.game.add.tween(this.drake).to({ x: 580 }, 40, easing, true);
+                    this.game.add.tween(this.drake).to({ x: this.drake.x + 70 }, 40, easing, true);
                 }.bind(this), 900);
             }
         }.bind(this), this);
@@ -56,7 +56,7 @@ $.extend(Drake.prototype, {
 
         setTimeout(function() {
             //Last punch impact
-            this.game.add.tween(this.drake).to({ x: 100 }, 150, easing, true);
+            this.game.add.tween(this.drake).to({ x: this.drake.x - 200 }, 150, easing, true);
         }.bind(this), 950);
     },
     setMeek: function (meek) {

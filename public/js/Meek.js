@@ -27,9 +27,9 @@ $.extend(Meek.prototype, {
         this.meek.events.onAnimationStart.add(function(){
             if (this.meek.animations.currentAnim.name === 'punch') {
                 this.drake.punched();
-                this.game.add.tween(this.meek).to({ x: 390 }, 100, easing, true);
+                this.game.add.tween(this.meek).to({ x: this.meek.x - 210 }, 100, easing, true);
                 setTimeout(function (){ //Last Punch
-                    this.game.add.tween(this.meek).to({ x: 320 }, 40, easingn, true);
+                    this.game.add.tween(this.meek).to({ x: this.meek.x - 70 }, 40, easingn, true);
                 }.bind(this), 900);
             }
         }.bind(this), this);
@@ -44,7 +44,7 @@ $.extend(Meek.prototype, {
         this.meek.animations.play('punched', 8, false, false);
         setTimeout(function() {
             //Last punch impact
-            this.game.add.tween(this.meek).to({ x: 800 }, 150, easing, true);
+            this.game.add.tween(this.meek).to({ x: this.meek.x + 200 }, 150, easing, true);
         }.bind(this), 950);
     },
     setMeekToIdle: function () {
