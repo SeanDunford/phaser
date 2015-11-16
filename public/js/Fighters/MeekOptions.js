@@ -26,6 +26,13 @@ var MeekOptions = {
         loop: false,
         killOnComplete: false
     },
+    defendIdle: {
+        name: 'defendIdle',
+        texture: 'meekDefendIdle',
+        frameRate: 8,
+        loop: false,
+        killOnComplete: false
+    },
     hurt: {
         name: 'hurt',
         texture: 'meekPunched',

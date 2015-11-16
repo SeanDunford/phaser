@@ -39,6 +39,8 @@ $.extend(Setup.prototype, {
 
         this.game.load.spritesheet('drakeDefend', 'assets/imgs/drake_defend_sheet.png', 192, 256, 12);
         this.game.load.spritesheet('meekDefend', 'assets/imgs/meek_defend_sheet.png', 192, 256, 12);
+        this.game.load.spritesheet('drakeDefendIdle', 'assets/imgs/drake_defend_idle_sheet.png', 192, 256, 12);
+        this.game.load.spritesheet('meekDefendIdle', 'assets/imgs/meek_defend_idle_sheet.png', 192, 256, 12);
 
         this.game.load.spritesheet('attackCooldown', 'assets/imgs/attack_cooldown_sheet.png', 76, 76, 18);
         this.game.load.spritesheet('defendCooldown', 'assets/imgs/defend_cooldown_sheet.png', 76, 76, 18);
@@ -105,7 +107,7 @@ $.extend(Setup.prototype, {
             this.defendCooldown = true;
 
             console.log('Defend Pressed');
-            this.drake.setDefend();
+            this.drake.setDefendIdle();
 
             this.defendBtn = game.add.sprite(this.defendBtn.x, this.defendBtn.y, 'defendCooldown');
             this.defendBtn.animations.add('defendCooldown');

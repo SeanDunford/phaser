@@ -26,6 +26,13 @@ var DrakeOptions = {
         loop: false,
         killOnComplete: false
     },
+    defendIdle: {
+        name: 'defendIdle',
+        texture: 'drakeDefendIdle',
+        frameRate: 8,
+        loop: false,
+        killOnComplete: false
+    },
     hurt: {
         name: 'hurt',
         texture: 'drakePunched',
