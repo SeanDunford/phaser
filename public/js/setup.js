@@ -37,11 +37,18 @@ $.extend(Setup.prototype, {
         this.game.load.spritesheet('drakePunched', 'assets/imgs/drake_punched_sheet.png', 192, 256, 12);
         this.game.load.spritesheet('meekPunched', 'assets/imgs/meek_punched_sheet.png', 192, 256, 12);
 
+        this.game.load.spritesheet('drakeDefend', 'assets/imgs/drake_defend_sheet.png', 192, 256, 12);
+        this.game.load.spritesheet('meekDefend', 'assets/imgs/meek_defend_sheet.png', 192, 256, 12);
+
         this.game.load.spritesheet('attackCooldown', 'assets/imgs/attack_cooldown_sheet.png', 76, 76, 18);
         this.game.load.spritesheet('defendCooldown', 'assets/imgs/defend_cooldown_sheet.png', 76, 76, 18);
         this.game.load.spritesheet('specialCooldown', 'assets/imgs/special_cooldown_sheet.png', 76, 76, 18);
 
         this.game.load.audio('theme_song', ['assets/sounds/querico.ogg']);
+        this.game.load.audio('drake_punch', ['assets/sounds/drake_punch.ogg']);
+        this.game.load.audio('drake_punch_hard', ['assets/sounds/drake_punch_hard.ogg']);
+        this.game.load.audio('meek_punch', ['assets/sounds/meek_punch.ogg']);
+        this.game.load.audio('meek_kick', ['assets/sounds/meek_kick.ogg']);
     },
     setPlayers: function(drake, meek) {
         this.drake = drake;
