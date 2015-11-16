@@ -25,5 +25,7 @@ var MeekOptions = {
         frameRate: 9,
         loop: false,
         killOnComplete: false
-    }
+    },
+    audio_punch: 'meek_punch',
+    audio_last_punch: 'meek_kick'
 };

@@ -25,5 +25,7 @@ var DrakeOptions = {
         frameRate: 9,
         loop: false,
         killOnComplete: false
-    }
+    },
+    audio_punch: 'drake_punch',
+    audio_last_punch: 'drake_punch_hard'
 };

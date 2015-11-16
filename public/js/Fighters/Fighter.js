@@ -19,6 +19,8 @@ function Fighter(game, options) {
     this.sprite = game.add.sprite(this.origX, this.origY, this.idle.texture);
     this.bounceBack = options.bounceBack;
     this.jumpForward = options.jumpForward;
+    this.audio_punch = game.add.audio(options.audio_punch);
+    this.audio_last_punch = game.add.audio(options.audio_last_punch);
 
     this.vulnerable = true;
     this.attacking = false;
@@ -33,6 +35,16 @@ function Fighter(game, options) {
             setTimeout(function (){ //Last Punch
                 this.game.add.tween(this.sprite).to({ x: this.sprite.x + 70 }, 40, easing, true);
             }.bind(this), 900);
+
+            setTimeout(function (){ //First Punch
+                this.audio_punch.play();
+            }.bind(this), 350);
+            setTimeout(function (){ //Second Punch
+                this.audio_punch.play();
+            }.bind(this), 580);
+            setTimeout(function (){ //Last Punch
+                this.audio_last_punch.play();
+            }.bind(this), 940);
         }
     }.bind(this), this);
 
