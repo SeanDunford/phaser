@@ -105,7 +105,7 @@ $.extend(Setup.prototype, {
             this.defendCooldown = true;
 
             console.log('Defend Pressed');
-            this.meek.setAttack();
+            this.drake.setDefend();
 
             this.defendBtn = game.add.sprite(this.defendBtn.x, this.defendBtn.y, 'defendCooldown');
             this.defendBtn.animations.add('defendCooldown');
@@ -124,6 +124,7 @@ $.extend(Setup.prototype, {
     specialClk: function() {
         if (!this.specialCooldown) {
             this.specialCooldown = true;
+            this.meek.setAttack();
 
             this.specialBtn = game.add.sprite(this.specialBtn.x, this.specialBtn.y, 'specialCooldown');
             this.specialBtn.animations.add('specialCooldown');

@@ -14,6 +14,7 @@ function Fighter(game, options) {
     this.origY = options.origY;
     this.idle = options.idle;
     this.attack = options.attack;
+    this.defend = options.defend;
     this.hurt = options.hurt;
     this.charName = options.charName;
     this.sprite = game.add.sprite(this.origX, this.origY, this.idle.texture);
@@ -52,7 +53,7 @@ function Fighter(game, options) {
         var animationName = this.sprite.animations.currentAnim.name;
         console.log('Animation: ', animationName, 'ended for', this.charName);
         var name = this.sprite.animations.currentAnim.name;
-        if (name === this.attack.name || name === this.hurt.name) {
+        if (name === this.attack.name || name === this.hurt.name || name === this.defend.name) {
             self.oponent.setIdle(); //Reset
             self.setIdle();
         }
@@ -71,6 +72,13 @@ function Fighter(game, options) {
         this.sprite.loadTexture(this.attack.texture);
         this.sprite.animations.add(this.attack.name);
         this.sprite.animations.play(this.attack.name, this.attack.frameRate, this.attack.loop);
+    };
+
+    this.setDefend = function(){
+        //this.sprite.bringToTop();
+        this.sprite.loadTexture(this.defend.texture);
+        this.sprite.animations.add(this.defend.name);
+        this.sprite.animations.play(this.defend.name, this.defend.frameRate, this.defend.loop);
     };
 
     this.setHurt = function(){

@@ -19,6 +19,13 @@ var DrakeOptions = {
         loop: false,
         killOnComplete: false
     },
+    defend: {
+        name: 'defend',
+        texture: 'drakeDefend',
+        frameRate: 8,
+        loop: false,
+        killOnComplete: false
+    },
     hurt: {
         name: 'hurt',
         texture: 'drakePunched',
