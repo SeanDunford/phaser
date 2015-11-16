@@ -24,7 +24,7 @@ function create() { //Called After Preload()
     drake.play();
     meek.play();
 
-    //playThemeSong();
+    playThemeSong();
 }
 
 function playThemeSong(){
