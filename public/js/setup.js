@@ -30,6 +30,7 @@ $.extend(Setup.prototype, {
         //(key, url, frameWidth, frameHeight, frameMax, margin, spacing)
         this.game.load.spritesheet('drakeIdle', 'assets/imgs/drake_idle_sheet.png', 192, 256, 4);
         this.game.load.spritesheet('meekIdle', 'assets/imgs/meek_idle_sheet.png', 192, 256, 4);
+
         this.game.load.spritesheet('drakePunch', 'assets/imgs/drake_punch_sheet.png', 192, 256, 12);
         this.game.load.spritesheet('meekPunch', 'assets/imgs/meek_punch_sheet.png', 192, 256, 12);
 
@@ -73,7 +74,7 @@ $.extend(Setup.prototype, {
             this.attackCooldown = true;
 
             console.log('Attack Pressed');
-            this.drake.punch();
+            this.drake.setAttack();
 
             this.attackBtn = game.add.sprite(this.attackBtn.x, this.attackBtn.y, 'attackCooldown');
             this.attackBtn.animations.add('attackCooldown');
@@ -97,7 +98,7 @@ $.extend(Setup.prototype, {
             this.defendCooldown = true;
 
             console.log('Defend Pressed');
-            this.meek.punch();
+            this.meek.setAttack();
 
             this.defendBtn = game.add.sprite(this.defendBtn.x, this.defendBtn.y, 'defendCooldown');
             this.defendBtn.animations.add('defendCooldown');
@@ -151,3 +152,4 @@ $.extend(Setup.prototype, {
         this.meek.healthBar.setPercent(0);
     }
 });
+
