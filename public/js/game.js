@@ -4,19 +4,31 @@ var width = 1024;//600;
 var game = new Phaser.Game(width, height, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 var drake = null, meek = null;
 
-
 function preload() { //First Method Called
     console.log('Preload') ;
     this.setup = new Setup(game);
 }
 
 function create() { //Called After Preload()
+    //http://phaser.io/examples/v2/p2-physics/contact-events
+
     console.log('Create');
+
+    game.physics.startSystem(Phaser.Physics.P2JS);
+    game.physics.p2.restitution = 0.9;
+
     meek = MeekFighter(game);
     drake = DrakeFighter(game);
 
+    game.physics.p2.enable([meek.sprite, drake.sprite], true);
+
     drake.oponent = meek;
     meek.oponent = drake;
+
+    drake.sprite.body.clearShapes();
+    drake.sprite.body.loadPolygon('physicsData', 'drake_idle_sheet_0');
+
+    console.log(drake.sprite.body.debug);
 
     this.setup.setPlayers(drake, meek);
     this.setup.beginCreate();

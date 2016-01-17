@@ -51,6 +51,9 @@ $.extend(Setup.prototype, {
         this.game.load.audio('drake_punch_hard', ['assets/sounds/drake_punch_hard.ogg', 'assets/sounds/drake_punch_hard.mp3']);
         this.game.load.audio('meek_punch', ['assets/sounds/meek_punch.ogg', 'assets/sounds/meek_punch.mp3']);
         this.game.load.audio('meek_kick', ['assets/sounds/meek_kick.ogg', 'assets/sounds/meek_kick.mp3']);
+
+        this.game.load.physics('physicsData', 'js/Hitboxes/physicsData.json');
+
     },
     setPlayers: function(drake, meek) {
         this.drake = drake;
