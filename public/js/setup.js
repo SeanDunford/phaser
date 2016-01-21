@@ -66,14 +66,14 @@ $.extend(Setup.prototype, {
         this.setupHealthBars();
     },
     setupBackground: function(){
-        var background = this.game.add.sprite(0, 0, 'background');
-        var bHeight = background.height;
-        var bWidth = background.width;
-
-        var scale = height / bHeight;
-
-        background.height = height;
-        background.width = bWidth * scale;
+        //var background = this.game.add.sprite(0, 0, 'background');
+        //var bHeight = background.height;
+        //var bWidth = background.width;
+        //
+        //var scale = height / bHeight;
+        //
+        //background.height = height;
+        //background.width = bWidth * scale;
     },
     setupButtons: function(){
         var spacingContainer = (width - spacingButtons * 2 - buttonWidth * 3) / 2;

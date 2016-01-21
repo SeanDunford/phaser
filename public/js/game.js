@@ -78,16 +78,4 @@ function update() {
         console.log('GAME OVER');
         console.log(winStr);
     }
-
-    var distance = game.math.distance(meek.sprite.body.x, meek.sprite.body.y, mouse.x, mouse.y);
-
-    if (distance > MIN_DISTANCE) {
-
-        var rotation = game.math.angleBetween(meek.sprite.body.x, meek.sprite.body.y, mouse.x, mouse.y);
-        meek.sprite.body.velocity.x = Math.cos(rotation) * MAX_SPEED;
-        meek.sprite.body.velocity.y = Math.sin(rotation) * MAX_SPEED;
-    } else {
-        meek.sprite.body.velocity.x = 0;
-        meek.sprite.body.velocity.y = 0;
-    }
 }

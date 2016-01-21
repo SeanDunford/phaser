@@ -78,7 +78,7 @@ function Fighter(game, options) {
         this.sprite.animations.add(this.attack.name);
         this.sprite.animations.play(this.attack.name, this.attack.frameRate, this.attack.loop);
         this.sprite.body.clearShapes();
-        this.sprite.body.loadPolygon('physicsData', this.idle.physics);
+        this.sprite.body.loadPolygon('physicsData', this.attack.physics);
     };
 
     this.setDefend = function(){
@@ -87,7 +87,7 @@ function Fighter(game, options) {
         this.sprite.animations.add(this.defend.name);
         this.sprite.animations.play(this.defend.name, this.defend.frameRate, this.defend.loop);
         this.sprite.body.clearShapes();
-        this.sprite.body.loadPolygon('physicsData', this.idle.physics);
+        this.sprite.body.loadPolygon('physicsData', this.defend.physics);
     };
 
     this.setDefendIdle = function(){
@@ -96,7 +96,7 @@ function Fighter(game, options) {
         this.sprite.animations.add(this.defendIdle.name);
         this.sprite.animations.play(this.defendIdle.name, this.defendIdle.frameRate, this.defendIdle.loop);
         this.sprite.body.clearShapes();
-        this.sprite.body.loadPolygon('physicsData', this.idle.physics);
+        this.sprite.body.loadPolygon('physicsData', this.defendIdle.physics);
     };
 
     this.setHurt = function(){
@@ -105,7 +105,7 @@ function Fighter(game, options) {
         this.sprite.animations.add(this.hurt.name);
         this.sprite.animations.play(this.hurt.name, this.hurt.frameRate, this.hurt.loop);
         this.sprite.body.clearShapes();
-        this.sprite.body.loadPolygon('physicsData', this.idle.physics);
+        this.sprite.body.loadPolygon('physicsData', this.hurt.physics);
         setTimeout(function() {
             //Last punch impact
             this.game.add.tween(this.sprite).to({ x: this.sprite.x + this.bounceBack}, 150, easing, true);
