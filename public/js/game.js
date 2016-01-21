@@ -3,29 +3,25 @@ var height = 576;//800;
 var width = 1024;//600;
 var game = new Phaser.Game(width, height, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 var drake = null, meek = null;
+var mouse;
+var MIN_DISTANCE = 32;
+var MAX_SPEED = 250;
 
 function preload() { //First Method Called
-    console.log('Preload') ;
+    console.log('Preload');
     this.setup = new Setup(game);
 }
 
 function create() { //Called After Preload()
-    //http://phaser.io/examples/v2/p2-physics/contact-events
-
     console.log('Create');
-
     game.physics.startSystem(Phaser.Physics.P2JS);
     game.physics.p2.restitution = 0.9;
 
     meek = MeekFighter(game);
     drake = DrakeFighter(game);
 
-    game.physics.p2.enable([meek.sprite, drake.sprite], true);
-
     drake.oponent = meek;
     meek.oponent = drake;
-
-    drake.sprite.body.clearShapes();
 
     this.setup.setPlayers(drake, meek);
     this.setup.beginCreate();
@@ -34,6 +30,13 @@ function create() { //Called After Preload()
     meek.play();
 
     playThemeSong();
+    game.physics.p2.setPostBroadphaseCallback(hit, this);
+
+    mouse = game.input.mousePointer;
+}
+
+function hit(body1, body2){
+    console.log('Touch da fishy!!!!!!', body1.sprite.key, ' ', body2.sprite.key);
 }
 
 function playThemeSong(){
@@ -74,5 +77,17 @@ function update() {
         winStr += ' is the winner!!!!1!!!1!!!';
         console.log('GAME OVER');
         console.log(winStr);
+    }
+
+    var distance = game.math.distance(meek.sprite.body.x, meek.sprite.body.y, mouse.x, mouse.y);
+
+    if (distance > MIN_DISTANCE) {
+
+        var rotation = game.math.angleBetween(meek.sprite.body.x, meek.sprite.body.y, mouse.x, mouse.y);
+        meek.sprite.body.velocity.x = Math.cos(rotation) * MAX_SPEED;
+        meek.sprite.body.velocity.y = Math.sin(rotation) * MAX_SPEED;
+    } else {
+        meek.sprite.body.velocity.x = 0;
+        meek.sprite.body.velocity.y = 0;
     }
 }

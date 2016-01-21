@@ -13,6 +13,7 @@ $.extend(Setup.prototype, {
     beginSetup: function () {
         this.setupCanvas();
         this.loadImages();
+        this.game.load.physics('physicsData', '/js/Hitboxes/physicsData.json');
     },
     setupCanvas: function () {
         var canvas = $('canvas');

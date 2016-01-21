@@ -17,7 +17,7 @@ function preload() { //First Method Called
     game.load.image('meek', '/assets/imgs/meek0.png');
     game.load.spritesheet('drakeIdle', '/assets/imgs/drake_idle_sheet.png', 192, 256, 4);
     game.load.spritesheet('meekIdle', '/assets/imgs/meek_idle_sheet.png', 192, 256, 4);
-    game.load.physics('physicsData', '/js/Hitboxes/physicsData.json');
+
 }
 
 function create() { //Called After Preload()
@@ -42,8 +42,6 @@ function create() { //Called After Preload()
     meek.body.loadPolygon('physicsData', 'meek0');
     meek.anchor.setTo(0.5, 0.5);
 
-
-
     game.add.tween(meek).to({ x: meek.x}, 100, easing, true);
     game.add.tween(drake).to({ x: drake.x}, 100, easing, true);
 
@@ -61,7 +59,6 @@ function create() { //Called After Preload()
     drake.body.collides(fighterCollisionGroup, hit, this);
 
     game.physics.p2.setPostBroadphaseCallback(hit, this);
-
 }
 
 function hit(body1, body2){

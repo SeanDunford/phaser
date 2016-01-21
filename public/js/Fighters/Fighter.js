@@ -28,6 +28,8 @@ function Fighter(game, options) {
     this.attacking = false;
     this.defending = false;
 
+    this.game.physics.p2.enable([this.sprite], true);
+
     this.sprite.events.onAnimationStart.add(function(){
         var animationName = this.sprite.animations.currentAnim.name;
         console.log('Animation: ', animationName, 'started for', this.charName);
@@ -66,6 +68,8 @@ function Fighter(game, options) {
         this.sprite.loadTexture(this.idle.texture, 0);
         this.sprite.animations.add(this.idle.name);
         this.sprite.animations.play(this.idle.name, this.idle.frameRate, this.idle.loop);
+        this.sprite.body.clearShapes();
+        this.sprite.body.loadPolygon('physicsData', this.idle.physics);
     };
 
     this.setAttack = function(){
@@ -73,6 +77,8 @@ function Fighter(game, options) {
         this.sprite.loadTexture(this.attack.texture);
         this.sprite.animations.add(this.attack.name);
         this.sprite.animations.play(this.attack.name, this.attack.frameRate, this.attack.loop);
+        this.sprite.body.clearShapes();
+        this.sprite.body.loadPolygon('physicsData', this.idle.physics);
     };
 
     this.setDefend = function(){
@@ -80,6 +86,8 @@ function Fighter(game, options) {
         this.sprite.loadTexture(this.defend.texture);
         this.sprite.animations.add(this.defend.name);
         this.sprite.animations.play(this.defend.name, this.defend.frameRate, this.defend.loop);
+        this.sprite.body.clearShapes();
+        this.sprite.body.loadPolygon('physicsData', this.idle.physics);
     };
 
     this.setDefendIdle = function(){
@@ -87,6 +95,8 @@ function Fighter(game, options) {
         this.sprite.loadTexture(this.defendIdle.texture);
         this.sprite.animations.add(this.defendIdle.name);
         this.sprite.animations.play(this.defendIdle.name, this.defendIdle.frameRate, this.defendIdle.loop);
+        this.sprite.body.clearShapes();
+        this.sprite.body.loadPolygon('physicsData', this.idle.physics);
     };
 
     this.setHurt = function(){
@@ -94,6 +104,8 @@ function Fighter(game, options) {
         this.sprite.loadTexture(this.hurt.texture);
         this.sprite.animations.add(this.hurt.name);
         this.sprite.animations.play(this.hurt.name, this.hurt.frameRate, this.hurt.loop);
+        this.sprite.body.clearShapes();
+        this.sprite.body.loadPolygon('physicsData', this.idle.physics);
         setTimeout(function() {
             //Last punch impact
             this.game.add.tween(this.sprite).to({ x: this.sprite.x + this.bounceBack}, 150, easing, true);

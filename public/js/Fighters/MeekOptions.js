@@ -10,7 +10,8 @@ var MeekOptions = {
         texture: 'meekIdle',
         frameRate: 8,
         loop: true,
-        killOnComplete: false
+        killOnComplete: false,
+        physics: 'meek0'
     },
     attack: {
         name: 'attack',

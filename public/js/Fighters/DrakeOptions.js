@@ -10,7 +10,8 @@ var DrakeOptions = {
         texture: 'drakeIdle',
         frameRate: 8,
         loop: true,
-        killOnComplete: false
+        killOnComplete: false,
+        physics: 'drake0'
     },
     attack: {
         name: 'attack',
