@@ -26,9 +26,6 @@ function create() { //Called After Preload()
     meek.oponent = drake;
 
     drake.sprite.body.clearShapes();
-    drake.sprite.body.loadPolygon('physicsData', 'drake_idle_sheet_0');
-
-    console.log(drake.sprite.body.debug);
 
     this.setup.setPlayers(drake, meek);
     this.setup.beginCreate();
